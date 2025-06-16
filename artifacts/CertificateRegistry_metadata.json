@@ -1,0 +1,333 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					}
+				],
+				"name": "OwnableInvalidOwner",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "OwnableUnauthorizedAccount",
+				"type": "error"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "certId",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "student",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "studentName",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "courseName",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "issueDate",
+						"type": "uint256"
+					}
+				],
+				"name": "CertificateIssued",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "previousOwner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "OwnershipTransferred",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "student",
+						"type": "address"
+					}
+				],
+				"name": "getCertificatesByStudent",
+				"outputs": [
+					{
+						"internalType": "bytes32[]",
+						"name": "ids",
+						"type": "bytes32[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "student",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "studentName",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "courseName",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "issueDate",
+						"type": "uint256"
+					}
+				],
+				"name": "issueCertificate",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "certId",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "renounceOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "transferOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "certId",
+						"type": "bytes32"
+					}
+				],
+				"name": "verifyCertificate",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "student",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "studentName",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "courseName",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "issueDate",
+						"type": "string"
+					},
+					{
+						"internalType": "bool",
+						"name": "valid",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"errors": {
+				"OwnableInvalidOwner(address)": [
+					{
+						"details": "The owner is not a valid owner account. (eg. `address(0)`)"
+					}
+				],
+				"OwnableUnauthorizedAccount(address)": [
+					{
+						"details": "The caller account is not authorized to perform an operation."
+					}
+				]
+			},
+			"kind": "dev",
+			"methods": {
+				"getCertificatesByStudent(address)": {
+					"params": {
+						"student": "Endereço do aluno."
+					},
+					"returns": {
+						"ids": "Array de certIds emitidos para o aluno."
+					}
+				},
+				"issueCertificate(address,string,string,uint256)": {
+					"params": {
+						"courseName": "Nome do curso ou evento.",
+						"issueDate": "Timestamp Unix da emissão.",
+						"student": "Endereço de carteira do aluno.",
+						"studentName": "Nome completo do aluno."
+					},
+					"returns": {
+						"certId": "Identificador único do certificado."
+					}
+				},
+				"owner()": {
+					"details": "Returns the address of the current owner."
+				},
+				"renounceOwnership()": {
+					"details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner."
+				},
+				"transferOwnership(address)": {
+					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+				},
+				"verifyCertificate(bytes32)": {
+					"params": {
+						"certId": "Identificador único do certificado."
+					},
+					"returns": {
+						"courseName": "Nome do curso/evento.",
+						"issueDate": "Data da emissão em formato legível.",
+						"student": "Endereço do aluno.",
+						"studentName": "Nome do aluno.",
+						"valid": "Se o certificado existe."
+					}
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"getCertificatesByStudent(address)": {
+					"notice": "Retorna lista de IDs de certificados de um aluno."
+				},
+				"issueCertificate(address,string,string,uint256)": {
+					"notice": "Emite um certificado para um aluno. Somente o owner (professor) pode chamar."
+				},
+				"verifyCertificate(bytes32)": {
+					"notice": "Verifica se um certificado existe e retorna seus dados."
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"CertificateRegistry.sol": "CertificateRegistry"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@openzeppelin/contracts/access/Ownable.sol": {
+			"keccak256": "0xff6d0bb2e285473e5311d9d3caacb525ae3538a80758c10649a4d61029b017bb",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://8ed324d3920bb545059d66ab97d43e43ee85fd3bd52e03e401f020afb0b120f6",
+				"dweb:/ipfs/QmfEckWLmZkDDcoWrkEvMWhms66xwTLff9DDhegYpvHo1a"
+			]
+		},
+		"@openzeppelin/contracts/utils/Context.sol": {
+			"keccak256": "0x493033a8d1b176a037b2cc6a04dad01a5c157722049bbecf632ca876224dd4b2",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6a708e8a5bdb1011c2c381c9a5cfd8a9a956d7d0a9dc1bd8bcdaf52f76ef2f12",
+				"dweb:/ipfs/Qmax9WHBnVsZP46ZxEMNRQpLQnrdE4dK8LehML1Py8FowF"
+			]
+		},
+		"CertificateRegistry.sol": {
+			"keccak256": "0x2e3c92f63b369314a21f8a59bcd384733835961a76b3f1d05d75f00a7b47a7b8",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://f62c64c1b989f67827848c38c9ff614320fe12dc14b824ec38720540af315554",
+				"dweb:/ipfs/QmYcCs11fd5GVJ1Lhr2KzCpiDGpwA8mmbs4wGx5Kq4sQ9F"
+			]
+		}
+	},
+	"version": 1
+}
