@@ -1,4 +1,3 @@
-// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
@@ -19,12 +18,7 @@ contract CertificateRegistry is Ownable {
 
     constructor() Ownable(msg.sender) {}
 
-    /// @notice Emite um certificado para um aluno. Somente o owner (professor) pode chamar.
-    /// @param student Endereço de carteira do aluno.
-    /// @param studentName Nome completo do aluno.
-    /// @param courseName Nome do curso ou evento.
-    /// @param issueDate Timestamp Unix da emissão.
-    /// @return certId Identificador único do certificado.
+    /// Emite um certificado para um aluno. Somente o owner (professor) pode chamar.
     function issueCertificate(
         address student,
         string calldata studentName,
@@ -46,13 +40,7 @@ contract CertificateRegistry is Ownable {
         emit CertificateIssued(certId, student, studentName, courseName, issueDate);
     }
 
-    /// @notice Verifica se um certificado existe e retorna seus dados.
-    /// @param certId Identificador único do certificado.
-    /// @return student Endereço do aluno.
-    /// @return studentName Nome do aluno.
-    /// @return courseName Nome do curso/evento.
-    /// @return issueDate Data da emissão em formato legível.
-    /// @return valid Se o certificado existe.
+    /// Verifica se um certificado existe e retorna seus dados.
     function verifyCertificate(bytes32 certId)
         external
         view
@@ -75,14 +63,12 @@ contract CertificateRegistry is Ownable {
         );
     }
 
-    /// @notice Retorna lista de IDs de certificados de um aluno.
-    /// @param student Endereço do aluno.
-    /// @return ids Array de certIds emitidos para o aluno.
+    /// Retorna lista de IDs de certificados de um aluno.
     function getCertificatesByStudent(address student) external view returns (bytes32[] memory ids) {
         return certificatesByStudent[student];
     }
 
-    /// @dev Converte timestamp para string no formato YYYY-MM-DD (simplificado).
+    /// Converte timestamp para string no formato YYYY-MM-DD (simplificado).
     function _formatDate(uint256 timestamp) internal pure returns (string memory) {
         uint256 daysSinceEpoch = timestamp / 86400;
         uint256 year = 1970 + daysSinceEpoch / 365;
